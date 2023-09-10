@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'first_ap/css/first.css' %}">
+    </head>
+    <body>
+        <h1>we are inside the app</h1>
+        <h1>Author name: {{name}}</h1>
+
+        <img src="{% static 'first_ap/images/box2_image.jpg' %}" alt="fg">
+
+    {% comment %} If else  {% endcomment %}
+
+        {% comment %} 
+
+        {% if age >= 18 %}
+        <p>Tumi driving licence nite parbe</p>
+        {% else %}
+        <p> Tumi akta sisu bacca </p>
+        {% endif %}
+
+        {% if marks >= 80 %}
+        <p> You got A+ </p>
+        {% elif marks < 80 and marks > 33 %}
+        <p> You are only pass </p>
+        {% else %}
+        <p> You are fail </p>
+        {% endif %} 
+
+        {% endcomment %}
+
+    {% comment %} For loop {% endcomment %}
+
+    {% comment %}
+    <table border = "2" width = 500>
+        <tr>
+            <th> ID </th>
+            <th> Course </th>
+            <th> Teacher </th>
+        </tr>
+        <tr>
+        {% for i in courses %}
+            <tr>
+                <td> {{i.id}} </td>
+                <td> {{i.course}} </td>
+                <td> {{i.teacher}} </td>
+            </tr>
+        {% endfor %}
+        </tr>
+    </table> 
+    {% endcomment %}
+
+    <!-- Filters in DTL -->
+        <!-- Add value -->
+        <h1>{{marks | add:"2"}}</h1>
+        <!-- DivisibLe Check -->
+        <h1>{{marks | divisibleby:"2"}}</h1>
+        <!-- Length -->
+        <h1>{{blog | length}}</h1>
+        <!-- word count -->
+        <h1>{{blog | wordcount}}</h1>
+        <!-- Lower -->
+        <h1>{{name | lower}}</h1>
+        <!-- Truncate words -->
+        <h1>{{blog | truncatewords:5}}</h1>
+        <h1>{{blog | truncatechars:18}}</h1>
+        <!-- Upper charset -->
+        <h1>{{blog | upper}}</h1>
+        <!-- make list -->
+        <h1>{{name | make_list}}</h1>
+        <!-- join -->
+        <h1>{{list | join:' , '}}</h1>
+
+
+    </body>
+</html>
