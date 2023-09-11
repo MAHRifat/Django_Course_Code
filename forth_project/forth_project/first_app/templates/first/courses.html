@@ -1,0 +1,21 @@
+
+{% load first_tag %}
+
+<table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Course Name</th>
+        <th scope="col">Teacher Name</th>
+      </tr>
+    </thead>
+{% for co in courses %}
+    <tbody>
+      <tr>
+        <td>{{co.id}}</td>
+        <td>{{co.course}}</td>
+        <td>{{co.teacher}}</td>
+      </tr>
+    </tbody>  
+    {% endfor %}
+</table>

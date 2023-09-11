@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
-
+{% load first_tag %}
 {% block title %} About page {% endblock title %}
 
 {% block content %} About page{% endblock content %}
 
-{% block content2 %} {{block.super}} About page{% endblock content2 %}
+{% comment %} using custom tag {% endcomment %}
+
+{% block content2 %} {{block.super}} About page
+<h2> {{author}} </h2>
+<h2> {{author|change_name:'change'}} </h2>
+<h2> {{author|change_name:'title'}} </h2>
+
+
+{% show_courses %}
+{% endblock content2 %}
