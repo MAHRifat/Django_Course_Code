@@ -18,8 +18,7 @@ class StudentForm(forms.ModelForm):
         }
         
         widgets = {
-            'name' : forms.TextInput(attrs={'class' : 'btn btn-success text-white'}),
-            'roll' : forms.PasswordInput()
+            'name' : forms.TextInput()
             }
         
         help_texts = {
