@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="width : 50% ; margin : auto">
+    {% comment %} action ="/show_books/" -> use this in form for go to show_books viwes {% endcomment %}
+    <form method="post" >   
+        {% csrf_token %}
+        <h1> Welcome to Book Store Management</h1>
+        {{form|crispy}}
+        <input type="submit" value="Submin" class = "bg-success text-white">
+    </form>
+</div>
+{% endblock content %}
