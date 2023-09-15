@@ -2,6 +2,7 @@
 {% block content %}
 <div style="width : 80% ; margin : auto">
     <h1>List of Books</h1>
+    {% if data %}
     <table class="table table-success table-striped">
         <thead>
           <tr>
@@ -24,11 +25,15 @@
               <td>{{i.first_published}}</td>
               <td>{{i.last_published}}</td>
               <td><a class ="btn btn-success btn-sm" href="{% url 'edit_book' id=i.id %}">Edit</a> 
-                <a class="btn btn-danger btn-sm">Delete</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'delete_book' id=i.id %}">Delete</a>
               </td>
             </tr>          
             {% endfor %}
         </tbody>
       </table>
+      {% else %}
+      <h3>  No data available </h3>
+      {% endif %}
+
 </div>
 {% endblock content %}
