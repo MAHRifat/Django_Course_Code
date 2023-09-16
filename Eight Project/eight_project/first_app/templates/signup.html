@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+    <style>
+        .success{
+            color : green
+
+        }
+    </style>
+  
+ {% block content %}
+ {% if messages %}
+ {% for m in messages %}
+ <small {% if m.tags %} class="{{m.tags}}" {% endif %}> {{m}} </small>
+ {% endfor %}
+{% endif %}
+<h1 style="width:50% ; margin:auto">Sign Up</h1>
+<form method="post" action="" style="width : 50% ; margin : auto;" novalidate>
+ {% csrf_token %}
+ {% comment %} {{form|crispy}} {% endcomment %}
+ {{form|crispy}}
+ {% comment %} {% for fm in form %}   # for this for loop we don't show the errors or labels
+     {{fm.label_tag}}
+     {{fm}}
+     {{fm.errors|striptags}}
+ {% endfor %} {% endcomment %}
+ <input type="submit" value="Submit" class = "bg-primary text-white" style="border : 0px solid black">
+</form>
+ {% endblock content %}
