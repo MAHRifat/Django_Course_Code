@@ -18,7 +18,7 @@ class StudentModel(models.Model):
     
 # Abstract base class
 
-class CommonInfoClass(models.Model):
+class CommonInfoClass(models.Model):   
     name = models.CharField(max_length=20)
     city = models.CharField(max_length=10)
     class Meta:
@@ -31,3 +31,14 @@ class StudentInfoModel(CommonInfoClass):
     
 class TeacherInfoModel(CommonInfoClass):
     salary = models.IntegerField()
+    
+# Multitable inheritance
+
+class EmployeeModel(models.Model):
+    name = models.CharField(max_length=20)
+    city = models.CharField(max_length=20)
+    designation = models.CharField(max_length=20)
+
+class ManagerModel(EmployeeModel):
+    take_interview = models.BooleanField()
+    hiring = models.BooleanField()
