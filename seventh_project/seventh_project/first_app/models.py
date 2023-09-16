@@ -80,3 +80,25 @@ class Post(models.Model):
     user = models.ForeignKey(to=Person, on_delete=models.SET_NULL, null = True)
     post_cap = models.CharField(max_length=30)
     post_details = models.CharField(max_length=50)
+
+
+# Many to Many relationship
+
+class Student(models.Model):
+    name = models.CharField(max_length=40)
+    roll = models.IntegerField()
+    class_name = models.CharField(max_length=30)
+    
+    def __str__(self) -> str:
+        return self.name
+    
+    
+class Teacher(models.Model):
+    student = models.ManyToManyField(to=Student)
+    name = models.CharField(max_length=49)
+    subject = models.CharField(max_length=20)
+    mobile_num = models.CharField(max_length=11)
+    
+    def student_list(self):
+        return ",".join([str(i) for i in self.student.all()])
+    
