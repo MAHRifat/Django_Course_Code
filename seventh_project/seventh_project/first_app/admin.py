@@ -1,5 +1,5 @@
 from django.contrib import admin
-from first_app.models import StudentModel,StudentInfoModel,TeacherInfoModel,EmployeeModel,ManagerModel,Friend,Me,Person,Passport
+from first_app.models import StudentModel,StudentInfoModel,TeacherInfoModel,EmployeeModel,ManagerModel,Friend,Me,Person,Passport,Post
 
 # Register your models here.
 # admin.site.register(StudentModel)
@@ -27,6 +27,9 @@ from first_app.models import StudentModel,StudentInfoModel,TeacherInfoModel,Empl
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['id','name','city','email']
     
-@admin.register(Passport)
-class PassportAdmin(admin.ModelAdmin):
-    list_display = ['id','user','pass_number','page','validity']
+# @admin.register(Passport)
+# class PassportAdmin(admin.ModelAdmin):
+#     list_display = ['id','user','pass_number','page','validity']
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['user','post_cap','post_details']

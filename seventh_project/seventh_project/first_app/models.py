@@ -74,3 +74,9 @@ class Passport(models.Model):
     validity = models.IntegerField()
 
     
+# One to One relationship 
+
+class Post(models.Model):
+    user = models.ForeignKey(to=Person, on_delete=models.SET_NULL, null = True)
+    post_cap = models.CharField(max_length=30)
+    post_details = models.CharField(max_length=50)
