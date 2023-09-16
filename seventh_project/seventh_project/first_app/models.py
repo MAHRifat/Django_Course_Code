@@ -56,3 +56,21 @@ class Me(Friend):   # ami ajke class jai nai
         proxy = True        
         ordering = ['id']
         
+        
+# One to One relationship        
+
+class Person(models.Model):
+    name = models.CharField(max_length=20)
+    city = models.CharField(max_length=10)
+    email = models.EmailField(max_length=39)
+    
+    def __str__(self) -> str:
+        return f"{self.name}"
+    
+class Passport(models.Model):
+    user = models.OneToOneField(to=Person, on_delete=models.CASCADE)
+    pass_number = models.IntegerField()
+    page = models.IntegerField()
+    validity = models.IntegerField()
+
+    
