@@ -94,7 +94,7 @@ class Student(models.Model):
     
     
 class Teacher(models.Model):
-    student = models.ManyToManyField(to=Student)
+    student = models.ManyToManyField(to=Student, related_name='teachers')   # related_name use korle amra Student class o accresss korte parbo 
     name = models.CharField(max_length=49)
     subject = models.CharField(max_length=20)
     mobile_num = models.CharField(max_length=11)
