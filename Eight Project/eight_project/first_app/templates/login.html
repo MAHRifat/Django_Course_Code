@@ -5,6 +5,11 @@
 <h1 style="width:50% ; margin:auto">Login</h1>
 <form method="post" action="" style="width : 50% ; margin : auto;" novalidate>
  {% csrf_token %}
+ {% comment %} {% if form.non_field_errors %}   # django do not show any errors using non valid pass or user we use those commend
+ {% for er in form.not_field_errors %}
+    <p class= 'bg-danger text-white p-3'> {{er}} </p>
+ {% endfor %}
+ {% endif %} {% endcomment %}
  {{form|crispy}}
  <input type="submit" value="Login" class = "bg-primary text-white" style="border : 0px solid black">
 </form>

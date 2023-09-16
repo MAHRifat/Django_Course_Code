@@ -24,5 +24,7 @@
      {{fm.errors|striptags}}
  {% endfor %} {% endcomment %}
  <input type="submit" value="Submit" class = "bg-primary text-white" style="border : 0px solid black">
+ <br>
+ <small> Already have an account <a href='{% url "login" %}'> Login </a></small>
 </form>
  {% endblock content %}
