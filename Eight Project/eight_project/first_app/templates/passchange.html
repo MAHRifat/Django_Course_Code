@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1 style="width:50% ; margin:auto">Password Change page</h1>
+<form method="post" action="" style="width : 50% ; margin : auto;" novalidate>
+ {% csrf_token %}
+ {% comment %} {% if form.non_field_errors %}  
+ {% for er in form.not_field_errors %}
+    <p class= 'bg-danger text-white p-3'> {{er}} </p>   # django do not show any errors using non valid pass or user we use those commend
+ {% endfor %}
+ {% endif %}  {% endcomment %}
+ {{form|crispy}}
+ {% comment %} {% for fm in from %} {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+ {% endfor %} {% endcomment %}
+ <input type="submit" value="Change Password" class = "bg-primary text-white" style="border : 0px solid black">
+</form>
+
+{% endblock content %}
