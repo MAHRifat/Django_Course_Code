@@ -52,14 +52,14 @@ class HomeView(TemplateView):
 
 
 
-class BookFormView(FormView):
+class BookFormView(CreateView):
     model = BookStoreModel
     template_name = 'store_book.html'
     form_class = BookStoreForm         
     success_url = reverse_lazy('show_books')  # it's also work like redirect
 
 
-
+# Show Books
 
 # def show_books(request):
 #     book = BookStoreModel.objects.all()
