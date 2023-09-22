@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="width : 50% ; margin : auto">
+   <h1> Are you sure that you want to delete the information? </h1>
+    <form method="post" >   
+         {% csrf_token %} 
+        {% comment %} <h1> Welcome to Book Store Management</h1>
+        {{form}}  {% endcomment %}
+        <input type="submit" value="Submin" class = "bg-success text-white">
+    </form>
+</div>
+{% endblock content %}
