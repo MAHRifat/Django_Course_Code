@@ -8,27 +8,25 @@
           <tr>
             <th scope="col">#ID</th>
             <th scope="col">Book Name</th>
-            {% comment %} <th scope="col">Author name</th>
+            <th scope="col">Author name</th>
             <th scope="col">Category</th>
             <th scope="col">First Publication</th>
             <th scope="col"> Last Publication</th>
-            <th scope="col"> Action</th> {% endcomment %}
+            <th scope="col"> Action</th>
           </tr>
         </thead>
         <tbody>
-            {% for i in data %}
             <tr>
               <td>{{i.id}}</td>
-              <td><a href ="{% url 'book_details' i.id %}">{{i.book_name}}</a></td>
-              {% comment %} <td>{{i.book_author}}</td>
+              <td>{{i.book_name}}</td>
+              <td>{{i.book_author}}</td>
               <td>{{i.category}}</td>
               <td>{{i.first_published}}</td>
               <td>{{i.last_published}}</td>
               <td><a class ="btn btn-success btn-sm" href="{% url 'edit_book' id=i.id %}">Edit</a> 
                 <a class="btn btn-danger btn-sm" href="{% url 'delete_book' id=i.id %}">Delete</a>
-              </td> {% endcomment %}
+              </td>
             </tr>          
-            {% endfor %}
         </tbody>
       </table>
       {% else %}

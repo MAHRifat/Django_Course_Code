@@ -8,6 +8,7 @@ urlpatterns = [
     # path('',views.TemplateView.as_view(template_name='home.html')),
     path('',views.HomeView.as_view(),name="home_page"),
     path('show_books/',views.BookListView.as_view(),name="show_books"),
+    path('books_details/<int:id>', views.BookDetailView.as_view(), name = 'book_details'),
     
     # function base urls
     

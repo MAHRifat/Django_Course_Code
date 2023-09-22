@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render,redirect
 from book.forms import BookStoreForm
 from book.models import BookStoreModel
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView,ListView,DetailView
 
 # Create your views here.
 
@@ -70,6 +70,15 @@ class BookListView(ListView):
         else:
             template_name = self.template_name
         return [template_name]
+
+class BookDetailView(DetailView):
+    model = BookStoreModel
+    template_name = 'book_delails.html'
+    context_object_name = 'i'
+    pk_url_kwarg = 'id'
+
+
+           
 
 def edit_book(request, id):
     book = BookStoreModel.objects.get(pk = id)
