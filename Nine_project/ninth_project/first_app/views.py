@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime, timedelta
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -37,10 +38,14 @@ def set_session(request):
     return render(request, 'home.html')
 
 def get_session(request):
-    name = request.session.get('name')
-    age = request.session.get('age')
-    language = request.session.get('language')
-    return render(request,'get_session.html', {'name':name, 'age': age, 'language':language})
+    if 'name' in request.session:
+        name = request.session.get('name')
+        age = request.session.get('age')
+        language = request.session.get('language')
+        request.session.modified = True # jodi session expired hoyar age get kori tahole abar notun expire time jog hobe
+        return render(request,'get_session.html', {'name':name, 'age': age, 'language':language})
+    else:
+        return HttpResponse('Your Session has been expired, Login again')
 
 def delete_session(request):
     # del request.session['name']           # only delete name 
