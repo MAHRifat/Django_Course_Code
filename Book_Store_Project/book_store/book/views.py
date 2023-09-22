@@ -4,6 +4,8 @@ from django.shortcuts import render,redirect
 from book.forms import BookStoreForm
 from book.models import BookStoreModel
 from django.views.generic import TemplateView,ListView,DetailView
+from django.views.generic.edit import FormView
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -22,18 +24,33 @@ class HomeView(TemplateView):
         context.update(kwargs)
         return context
 
-def store_book(request):
-    if request.method == "POST":
-        book = BookStoreForm(request.POST)
-        if book.is_valid():
-            book.save()
-            print(book.cleaned_data)
-            # use this redirect for when we click the button we will go the show_books url
-            return redirect('show_books')
-    else:
-        book = BookStoreForm()
+# def store_book(request):
+#     if request.method == "POST":
+#         book = BookStoreForm(request.POST)
+#         if book.is_valid():
+#             book.save()
+#             print(book.cleaned_data)
+#             # use this redirect for when we click the button we will go the show_books url
+#             return redirect('show_books')
+#     else:
+#         book = BookStoreForm()
     
-    return render(request, 'store_book.html', {'form' : book})
+#     return render(request, 'store_book.html', {'form' : book})
+
+# class base form
+
+class BookFormView(FormView):
+    template_name = 'store_book.html'
+    form_class = BookStoreForm
+    # success_url = '/show_books/'           # it's work like redirect
+    success_url = reverse_lazy('show_books')  # it's also work like redirect
+    def form_valid(self, form):
+        print(form.cleaned_data)
+        form.save()
+        # return super().form_valid(form)
+        return redirect('show_books')
+    
+
 
 # def show_books(request):
 #     book = BookStoreModel.objects.all()
