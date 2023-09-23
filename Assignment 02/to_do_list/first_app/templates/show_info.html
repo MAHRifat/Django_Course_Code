@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="width : 80% ; margin : auto ; padding-left : 680px"> 
+    <h1>Tasks</h1>
+</div>
+<div style="width : 80% ; margin : auto ; padding-left : 150px">
+    {% if info %}
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for i in info %}
+            <tr>
+              <td>{{i.tasktitle}}</td>
+              <td>{{i.taskDescription}}</td>
+              <td>Incomplete</td>
+              <td>
+                <a class="btn btn-danger btn-sm" href="{% url 'delete_page' pk=i.id %}">Delete</a>
+                <a class ="btn btn-success btn-sm" href="{% url 'edit_page' pk=i.id %}">Edit</a> 
+                 <a class ="btn btn-success btn-sm" href="{% url 'complete_page' pk=i.id %}">Complete</a> 
+              </td>
+            </tr>          
+            {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <h3>  No info available </h3>
+      {% endif %}
+
+</div>
+{% endblock content %}

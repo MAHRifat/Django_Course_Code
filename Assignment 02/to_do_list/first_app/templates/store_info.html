@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div style="width : 50% ; margin : auto">
+    <form method="post" >   
+        {% csrf_token %}
+        <h1>Store TO-Do Info</h1>
+        {{form|crispy}}
+        <input type="submit" value="Submin" class = "bg-success text-white">
+    </form>
+</div>
+{% endblock content %}
