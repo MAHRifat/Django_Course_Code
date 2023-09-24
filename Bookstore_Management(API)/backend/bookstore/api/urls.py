@@ -10,4 +10,5 @@ router.register(r'books', views.BookListview,basename="book")
 urlpatterns = [
     # path('', include(router.urls)),
     path('books/', views.BookListview.as_view()),  #get, post request handle korbe
+    path('books/<int:pk>/', views.BookListDeleteUpdate.as_view()),
 ]
