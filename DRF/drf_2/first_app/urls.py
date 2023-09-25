@@ -8,4 +8,5 @@ router.register('reviews', ProductReviewViewSet, basename='product-review')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('log_in/', include("rest_framework.urls")),
 ]
