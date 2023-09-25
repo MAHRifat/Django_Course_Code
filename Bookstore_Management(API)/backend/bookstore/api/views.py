@@ -9,48 +9,61 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+# Method 1 : APIView
 
-class BookListview(APIView):
-    """
-    List all snippets, or create a new snippet.
-    """
-    def get(self, request, format=None):
-        model = BookStoreModel.objects.all()
-        serializer = BookStoreSerializer(model, many=True)
-        return Response(serializer.data)
+# class BookListview(APIView):
+#     """
+#     List all snippets, or create a new snippet.
+#     """
+#     def get(self, request, format=None):
+#         model = BookStoreModel.objects.all()
+#         serializer = BookStoreSerializer(model, many=True)
+#         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = BookStoreSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def post(self, request, format=None):
+#         serializer = BookStoreSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class BookListDeleteUpdate(APIView):
-    """
-    Retrieve, update or delete a snippet instance.
-    """
-    def get_object(self, pk):
-        try:
-            return BookStoreModel.objects.get(pk=pk)
-        except BookStoreModel.DoesNotExist:
-            raise Http404
+# class BookListDeleteUpdate(APIView):
+#     """
+#     Retrieve, update or delete a snippet instance.
+#     """
+#     def get_object(self, pk):
+#         try:
+#             return BookStoreModel.objects.get(pk=pk)
+#         except BookStoreModel.DoesNotExist:
+#             raise Http404
 
-    def get(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = BookStoreSerializer(snippet)
-        return Response(serializer.data)
+#     def get(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         serializer = BookStoreSerializer(snippet)
+#         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = BookStoreSerializer(snippet, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#     def put(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         serializer = BookStoreSerializer(snippet, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+#     def delete(self, request, pk, format=None):
+#         snippet = self.get_object(pk)
+#         snippet.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# Mehtod 2 : Concreteapi view
+
+from rest_framework import generics
+
+class BookListview(generics.ListCreateAPIView):  # get and post request korte parbo eita diye
+    queryset = BookStoreModel.objects.all()
+    serializer_class = BookStoreSerializer
+
+class BookListDeleteUpdate(generics.RetrieveUpdateDestroyAPIView): # update and delete korte parbo
+    queryset = BookStoreModel.objects.all()
+    serializer_class = BookStoreSerializer
