@@ -56,14 +56,25 @@ from rest_framework import status
 #         snippet.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# Mehtod 2 : Concreteapi view
+# Mehtod 2 : Concreteapi view - shortcut 1
 
-from rest_framework import generics
+# from rest_framework import generics
 
-class BookListview(generics.ListCreateAPIView):  # get and post request korte parbo eita diye
-    queryset = BookStoreModel.objects.all()
-    serializer_class = BookStoreSerializer
+# class BookListview(generics.ListCreateAPIView):  # get and post request korte parbo eita diye
+#     queryset = BookStoreModel.objects.all()
+#     serializer_class = BookStoreSerializer
 
-class BookListDeleteUpdate(generics.RetrieveUpdateDestroyAPIView): # update and delete korte parbo
+# class BookListDeleteUpdate(generics.RetrieveUpdateDestroyAPIView): # update and delete korte parbo
+#     queryset = BookStoreModel.objects.all()
+#     serializer_class = BookStoreSerializer
+
+# method 3 : Shortcut / Model view set
+
+from rest_framework import viewsets
+
+class BookViewSet(viewsets.ModelViewSet):
+    """
+    This viewset automatically provides `list` and `retrieve` actions.
+    """
     queryset = BookStoreModel.objects.all()
     serializer_class = BookStoreSerializer
